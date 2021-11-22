@@ -42,7 +42,13 @@ func (s *StatsService) Start() {
 func (s *StatsService) computeAveragesByCountry(w http.ResponseWriter, r *http.Request) {
 	// Setting the token here is dirty and hacky but
 	// I'll do it for this small project.
-	s.token = r.URL.Query().Get("token")
+
+	if token := r.URL.Query().Get("token"); token != "" {
+		s.token = token
+	} else {
+		w.Write([]byte(fmt.Sprint("no token provided")))
+		return
+	}
 
 	client := &http.Client{}
 	w.Header().Set("Content-Type", "application/json")
