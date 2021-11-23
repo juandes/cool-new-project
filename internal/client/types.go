@@ -1,4 +1,6 @@
-package stats
+package client
+
+// structs created with the tool https://mholt.github.io/json-to-go/
 
 // User is the response from Bitly's getUser endpoint
 type User struct {
@@ -54,10 +56,4 @@ type MetricsByCountry struct {
 	Units int    `json:"units"`
 	Unit  string `json:"unit"`
 	Facet string `json:"facet"`
-}
-
-// AverageByCountryResponse is the response object.
-type AverageByCountryResponse struct {
-	// Where key is the country code and value is the average clicks.
-	Averages map[string]float64 `json:"averages"`
 }
